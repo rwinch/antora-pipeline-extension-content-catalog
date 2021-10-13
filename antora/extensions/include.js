@@ -14,7 +14,7 @@ module.exports.register = (pipeline, { playbook, config }) => {
 
     pipeline
         .on('contentClassified', ({ contentCatalog }) => {
-            const name = 'session'
+            const name = 'java-project'
             const version = '2.6'
             const filesToAdd = aggregateFiles.filter(f => f.src.origin.url.includes("examples"));
             for (const f of filesToAdd) {

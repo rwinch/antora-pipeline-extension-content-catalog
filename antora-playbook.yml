@@ -1,6 +1,6 @@
 site:
   title: Spring Session
-  start_page: session::index.adoc
+  start_page: java-project::index.adoc
 content:
   sources:
     - url: ./
