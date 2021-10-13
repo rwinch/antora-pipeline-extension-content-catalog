@@ -5,7 +5,7 @@ content:
   sources:
     - url: ./
       branches: HEAD
-    - url: ../antora-java-examples/
+    - url: ../antora-java-examples
       branches: HEAD
 ui:
   bundle:
