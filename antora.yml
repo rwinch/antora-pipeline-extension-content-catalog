@@ -1,6 +1,6 @@
 name: java-project
 title: Java Project
-version: 1.0
+version: 2.6
 start_page: ROOT:index.adoc
 
 nav:
