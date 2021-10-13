@@ -1,0 +1,16 @@
+site:
+  title: Spring Session
+  start_page: session::index.adoc
+content:
+  sources:
+    - url: ./
+      branches: HEAD
+    - url: ../antora-java-examples/
+      branches: HEAD
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+pipeline:
+  extensions:
+    - ./antora/extensions/include.js

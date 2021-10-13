@@ -1,0 +1,10 @@
+Example of using Antora Pipeline Extensions to add Content to the Content Catalog:
+
+[source,bash]
+----
+$ antora -v
+@antora/cli: 3.0.0-alpha.8
+@antora/site-generator-default: 3.0.0-alpha.8
+$ antora antora-playbook.yml --stacktrace
+$ google-chrome build/site/session/2.6/generated.html
+----

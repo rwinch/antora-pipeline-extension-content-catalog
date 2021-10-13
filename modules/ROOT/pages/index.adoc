@@ -1,0 +1,8 @@
+= Main
+
+We include content from an external repository that is in a structure that conforms to Java standards rather than Antora's structure:
+
+[source,java]
+----
+include::example$sample1/src/main/java/Main.java[]
+----
