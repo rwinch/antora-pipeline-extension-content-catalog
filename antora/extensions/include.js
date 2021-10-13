@@ -1,30 +1,20 @@
 'use strict'
 
 module.exports.register = (pipeline, { playbook, config }) => {
-    var fs = pipeline.require("fs");
-    // console.log(`Antora is building the ${JSON.stringify(playbook, null, 2)}.`)
-    // console.log(`Antora config ${JSON.stringify(config, null, 2)}.`)
-    // log(pipeline);
-
     var contentAggregate = [];
 
     pipeline.on('contentAggregated',  args => {
         for (const c of args.contentAggregate) {
-            const copy = new Object();
-            Object.assign(copy, c);
-            contentAggregate.push(copy);
+            contentAggregate.push(Object.assign(new Object(), c));
         }
     });
 
-    pipeline
-        .on('contentClassified', ({ contentCatalog }) => {
-            const name = 'java-project'
-            const version = '2.6'
-
-            console.log(JSON.stringify(contentAggregate, no_data, 2));
-            const filesToAdd = contentAggregate[0].files.filter(f => f.src.origin.url.includes("examples"));
+    pipeline.on('contentClassified', ({ contentCatalog }) => {
+        for (const content of contentAggregate) {
+            const name = content.name;
+            const version = content.version;
+            const filesToAdd = content.files.filter(f => f.src.origin.url.includes("examples"));
             for (const f of filesToAdd) {
-                console.log(JSON.stringify(f, no_data, 2));
                 const src = {
                     component: name,
                     version,
@@ -35,7 +25,9 @@ module.exports.register = (pipeline, { playbook, config }) => {
                 Object.assign(f.src, src);
                 contentCatalog.addFile(f);
             }
-        })
+        }
+        contentAggregate = null;
+    });
 }
 
 function log(pipeline) {
