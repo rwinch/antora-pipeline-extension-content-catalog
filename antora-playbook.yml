@@ -13,4 +13,9 @@ ui:
     snapshot: true
 pipeline:
   extensions:
-    - ./antora/extensions/include.js
+    - require: ./antora/extensions/include.js
+      content:
+        samples:
+          module: 'ROOT'
+          family: 'example'
+          
