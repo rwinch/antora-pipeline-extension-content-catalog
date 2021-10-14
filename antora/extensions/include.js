@@ -13,21 +13,36 @@ module.exports.register = (pipeline, { playbook, config }) => {
         for (const content of contentAggregate) {
             const name = content.name;
             const version = content.version;
-            const filesToAdd = content.files.filter(f => f.src.origin.url.includes("examples"));
-            for (const f of filesToAdd) {
-                const src = {
-                    component: name,
-                    version,
-                    module: 'ROOT',
-                    family: 'example',
-                    relative: f.src.path
+            for (const [mapping_name, mapping_value] of Object.entries(config.content)) {
+                const filesToAdd = content.files
+                    .filter(f => testAnyRegex(mapping_value.gitUrlPatterns, f.src.origin.url));
+                for (const f of filesToAdd) {
+                    const src = {
+                        component: name,
+                        version,
+                        module: mapping_value.module,
+                        family: mapping_value.family,
+                        relative: f.src.path
+                    }
+                    Object.assign(f.src, src);
+                    contentCatalog.addFile(f);
                 }
-                Object.assign(f.src, src);
-                contentCatalog.addFile(f);
             }
         }
         contentAggregate = null;
     });
+}
+
+function testAnyRegex(regexes, str) {
+    if (!regexes) {
+        return true;
+    }
+    for (const r of regexes) {
+        if (new RegExp(r).test(str)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function log(pipeline) {

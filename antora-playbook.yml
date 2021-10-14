@@ -18,4 +18,5 @@ pipeline:
         samples:
           module: 'ROOT'
           family: 'example'
-          
+          git_url_patterns:
+            - '.*examples'
