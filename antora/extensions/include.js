@@ -13,7 +13,7 @@ module.exports.register = (pipeline, { playbook, config }) => {
         for (const content of contentAggregate) {
             const name = content.name;
             const version = content.version;
-            for (const [mapping_name, mapping_value] of Object.entries(config.content)) {
+            for (const [mapping_name, mapping_value] of Object.entries(config.contentCatalog)) {
                 const filesToAdd = content.files
                     .filter(f => testAnyRegex(mapping_value.gitUrlPatterns, f.src.origin.url));
                 for (const f of filesToAdd) {

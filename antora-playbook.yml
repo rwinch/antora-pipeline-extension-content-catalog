@@ -14,7 +14,7 @@ ui:
 pipeline:
   extensions:
     - require: ./antora/extensions/include.js
-      content:
+      content-catalog:
         samples:
           module: 'ROOT'
           family: 'example'
