@@ -18,5 +18,12 @@ pipeline:
         samples:
           module: 'ROOT'
           family: 'example'
-          git_url_patterns:
-            - '.*examples'
+          url:
+            includes:
+              - '.*examples'
+        readme:
+          module: 'ROOT'
+          family: 'page'
+          path:
+            includes:
+              - '.*README.adoc'

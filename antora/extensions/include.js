@@ -15,7 +15,8 @@ module.exports.register = (pipeline, { playbook, config }) => {
             const version = content.version;
             for (const [mapping_name, mapping_value] of Object.entries(config.contentCatalog)) {
                 const filesToAdd = content.files
-                    .filter(f => testAnyRegex(mapping_value.gitUrlPatterns, f.src.origin.url));
+                    .filter(f => testAnyRegex(mapping_value.url?.includes, f.src.origin.url))
+                    .filter(f => testAnyRegex(mapping_value.path?.includes, f.src.path));
                 for (const f of filesToAdd) {
                     const src = {
                         component: name,
