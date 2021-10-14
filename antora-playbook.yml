@@ -5,7 +5,7 @@ content:
   sources:
     - url: ./
       branches: HEAD
-    - url: ../antora-java-examples
+    - url: https://github.com/rwinch/antora-java-examples
       branches: HEAD
 ui:
   bundle:
